@@ -5,12 +5,12 @@ Angular Date Time Picker
 [![npm](https://img.shields.io/npm/dm/ng-pick-datetime.svg)](https://www.npmjs.com/package/ng-pick-datetime)
 
 **Angular date time picker - Angular reusable UI component**
-**This package supports Angular 8**
+**This package supports Angular 17**
 
 
 Breaking Changes
 -------
- - The picker has been updated for Angular 7+ apps.
+ - The picker has been updated for Angular 17 apps.
 
 Description
 -------
@@ -189,11 +189,3 @@ Demo
 -------
 - Online doc is [here](https://daniel-projects.firebaseapp.com/owlng/date-time-picker)
 - Online demo(StackBlitz) is [here](https://stackblitz.com/github/DanielYKPan/owl-examples/tree/date-time-picker)
-
-License
--------
-* License: MIT
-
-Author
--------
-**Daniel YK Pan**

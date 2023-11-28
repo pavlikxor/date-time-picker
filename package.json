@@ -10,9 +10,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:lib": "ng build picker && cp README.md dist/picker",
-    "build:css": "mkdir -p dist/picker/assets/style && node-sass --output-style=compressed projects/picker/src/sass/picker.scss > dist/picker/assets/style/picker.min.css",
+    "build:styles": "mkdir -p dist/picker/assets/style && node-sass --output-style=compressed projects/picker/src/sass/picker.scss > dist/picker/assets/style/picker.min.css",
     "npm:pack": "cd dist/picker && npm pack",
-    "package": "npm run build:lib && npm run build:css && npm run npm:pack"
+    "package": "npm run build:lib && npm run build:styles && npm run npm:pack"
   },
   "dependencies": {
     "@angular/animations": "^16.2.12",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.10",
-    "@angular/cdk": "^15.2.9",
+    "@angular/cdk": "^16.2.12",
     "@angular/cli": "^16.2.10",
     "@angular/compiler-cli": "^16.2.12",
     "@angular/language-service": "^16.2.12",
