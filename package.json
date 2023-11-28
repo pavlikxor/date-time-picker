@@ -37,8 +37,8 @@
     "@angular/platform-browser-dynamic": "~9.1.13",
     "@angular/router": "~9.1.13",
     "core-js": "^3.33.3",
-    "moment": "^2.24.0",
-    "moment-timezone": "^0.5.25",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.43",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -46,7 +46,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.15",
     "@angular-devkit/build-ng-packagr": "~0.901.15",
-    "@angular/cdk": "^8.2.3",
+    "@angular/cdk": "^9.2.4",
     "@angular/cli": "~9.1.15",
     "@angular/compiler-cli": "~9.1.13",
     "@angular/language-service": "~9.1.13",
