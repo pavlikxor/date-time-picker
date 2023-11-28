@@ -30,10 +30,10 @@ export class OwlDialogConfig {
     /**
      * Whether to focus the dialog when the dialog is opened
      */
-    public autoFocus?= true;
+    public autoFocus? = true;
 
     /** Whether the dialog has a backdrop. */
-    public hasBackdrop?= true;
+    public hasBackdrop? = true;
 
     /**
      * Custom style for the backdrop
@@ -44,7 +44,7 @@ export class OwlDialogConfig {
     public data?: any = null;
 
     /** Whether the user can use escape or clicking outside to close a modal. */
-    public disableClose?= false;
+    public disableClose? = false;
 
     /**
      * ID for the modal. If omitted, a unique one will be generated.
@@ -64,7 +64,7 @@ export class OwlDialogConfig {
     /**
      * Mouse Event
      * */
-    public event?: MouseEvent = null;
+    public event?: MouseEvent | null = null;
 
     /**
      * Custom class for the backdrop
