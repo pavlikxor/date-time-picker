@@ -2,6 +2,18 @@
  * calendar-month-view.component
  */
 
+import { coerceNumberProperty } from '@angular/cdk/coercion';
+import {
+    DOWN_ARROW,
+    END,
+    ENTER,
+    HOME,
+    LEFT_ARROW,
+    PAGE_DOWN,
+    PAGE_UP,
+    RIGHT_ARROW,
+    UP_ARROW
+} from '@angular/cdk/keycodes';
 import {
     AfterContentInit,
     ChangeDetectionStrategy,
@@ -16,29 +28,17 @@ import {
     Output,
     ViewChild
 } from '@angular/core';
-import {
-    CalendarCell,
-    OwlCalendarBodyComponent
-} from './calendar-body.component';
+import { Subscription } from 'rxjs';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import {
     OWL_DATE_TIME_FORMATS,
     OwlDateTimeFormats
 } from './adapter/date-time-format.class';
-import { Subscription } from 'rxjs';
-import { SelectMode } from './date-time.class';
 import {
-    DOWN_ARROW,
-    END,
-    ENTER,
-    HOME,
-    LEFT_ARROW,
-    PAGE_DOWN,
-    PAGE_UP,
-    RIGHT_ARROW,
-    UP_ARROW
-} from '@angular/cdk/keycodes';
-import { coerceNumberProperty } from '@angular/cdk/coercion';
+    CalendarCell,
+    OwlCalendarBodyComponent
+} from './calendar-body.component';
+import { SelectMode } from './date-time.class';
 
 const DAYS_PER_WEEK = 7;
 const WEEKS_PER_VIEW = 6;
@@ -292,7 +292,7 @@ export class OwlMonthViewComponent<T>
         @Optional()
         @Inject(OWL_DATE_TIME_FORMATS)
         private dateTimeFormats: OwlDateTimeFormats
-    ) {}
+    ) { }
 
     public ngOnInit() {
         this.generateWeekDays();
@@ -397,7 +397,7 @@ export class OwlMonthViewComponent<T>
                 moment = this.dateTimeAdapter.addCalendarDays(
                     this.pickerMoment,
                     this.dateTimeAdapter.getNumDaysInMonth(this.pickerMoment) -
-                        this.dateTimeAdapter.getDate(this.pickerMoment)
+                    this.dateTimeAdapter.getDate(this.pickerMoment)
                 );
                 this.pickerMomentChange.emit(moment);
                 break;
@@ -406,13 +406,13 @@ export class OwlMonthViewComponent<T>
             case PAGE_UP:
                 moment = event.altKey
                     ? this.dateTimeAdapter.addCalendarYears(
-                          this.pickerMoment,
-                          -1
-                      )
+                        this.pickerMoment,
+                        -1
+                    )
                     : this.dateTimeAdapter.addCalendarMonths(
-                          this.pickerMoment,
-                          -1
-                      );
+                        this.pickerMoment,
+                        -1
+                    );
                 this.pickerMomentChange.emit(moment);
                 break;
 
@@ -420,13 +420,13 @@ export class OwlMonthViewComponent<T>
             case PAGE_DOWN:
                 moment = event.altKey
                     ? this.dateTimeAdapter.addCalendarYears(
-                          this.pickerMoment,
-                          1
-                      )
+                        this.pickerMoment,
+                        1
+                    )
                     : this.dateTimeAdapter.addCalendarMonths(
-                          this.pickerMoment,
-                          1
-                      );
+                        this.pickerMoment,
+                        1
+                    );
                 this.pickerMomentChange.emit(moment);
                 break;
 
@@ -591,9 +591,9 @@ export class OwlMonthViewComponent<T>
             this.dateTimeAdapter.isValid(dateLeft) &&
             this.dateTimeAdapter.isValid(dateRight) &&
             this.dateTimeAdapter.getYear(dateLeft) ===
-                this.dateTimeAdapter.getYear(dateRight) &&
+            this.dateTimeAdapter.getYear(dateRight) &&
             this.dateTimeAdapter.getMonth(dateLeft) ===
-                this.dateTimeAdapter.getMonth(dateRight)
+            this.dateTimeAdapter.getMonth(dateRight)
         );
     }
 

@@ -3,23 +3,6 @@
  */
 
 import {
-    ComponentRef,
-    Inject,
-    Injectable,
-    InjectionToken,
-    Injector,
-    Optional,
-    SkipSelf,
-    TemplateRef
-} from '@angular/core';
-import { Location } from '@angular/common';
-import { OwlDialogConfig } from './dialog-config.class';
-import { OwlDialogRef } from './dialog-ref.class';
-import { OwlDialogContainerComponent } from './dialog-container.component';
-import { extendObject } from '../utils';
-import { defer, Observable, Subject } from 'rxjs';
-import { startWith } from 'rxjs/operators';
-import {
     Overlay,
     OverlayConfig,
     OverlayContainer,
@@ -31,6 +14,22 @@ import {
     ComponentType,
     PortalInjector
 } from '@angular/cdk/portal';
+import { Location } from '@angular/common';
+import {
+    ComponentRef,
+    Inject,
+    Injectable,
+    InjectionToken,
+    Injector,
+    Optional,
+    SkipSelf,
+    TemplateRef
+} from '@angular/core';
+import { Observable, Subject, defer, startWith } from 'rxjs';
+import { extendObject } from '../utils';
+import { OwlDialogConfig } from './dialog-config.class';
+import { OwlDialogContainerComponent } from './dialog-container.component';
+import { OwlDialogRef } from './dialog-ref.class';
 
 export const OWL_DIALOG_DATA = new InjectionToken<any>('OwlDialogData');
 
@@ -132,8 +131,7 @@ export class OwlDialogService {
 
         if (config.id && this.getDialogById(config.id)) {
             throw Error(
-                `Dialog with id "${
-                    config.id
+                `Dialog with id "${config.id
                 }" exists already. The dialog id must be unique.`
             );
         }

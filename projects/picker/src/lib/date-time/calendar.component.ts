@@ -18,15 +18,14 @@ import {
     Optional,
     Output
 } from '@angular/core';
-import { OwlDateTimeIntl } from './date-time-picker-intl.service';
+import { Subscription, take } from 'rxjs';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import {
     OWL_DATE_TIME_FORMATS,
     OwlDateTimeFormats
 } from './adapter/date-time-format.class';
+import { OwlDateTimeIntl } from './date-time-picker-intl.service';
 import { SelectMode } from './date-time.class';
-import { take } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'owl-date-time-calendar',
@@ -65,10 +64,10 @@ export class OwlCalendarComponent<T>
 
         this._minDate = value
             ? this.dateTimeAdapter.createDate(
-                  this.dateTimeAdapter.getYear(value),
-                  this.dateTimeAdapter.getMonth(value),
-                  this.dateTimeAdapter.getDate(value)
-              )
+                this.dateTimeAdapter.getYear(value),
+                this.dateTimeAdapter.getMonth(value),
+                this.dateTimeAdapter.getDate(value)
+            )
             : null;
     }
 
@@ -85,10 +84,10 @@ export class OwlCalendarComponent<T>
 
         this._maxDate = value
             ? this.dateTimeAdapter.createDate(
-                  this.dateTimeAdapter.getYear(value),
-                  this.dateTimeAdapter.getMonth(value),
-                  this.dateTimeAdapter.getDate(value)
-              )
+                this.dateTimeAdapter.getYear(value),
+                this.dateTimeAdapter.getMonth(value),
+                this.dateTimeAdapter.getDate(value)
+            )
             : null;
     }
 
@@ -172,9 +171,9 @@ export class OwlCalendarComponent<T>
     get periodButtonText(): string {
         return this.isMonthView
             ? this.dateTimeAdapter.format(
-                  this.pickerMoment,
-                  this.dateTimeFormats.monthYearLabel
-              )
+                this.pickerMoment,
+                this.dateTimeFormats.monthYearLabel
+            )
             : this.dateTimeAdapter.getYearName(this.pickerMoment);
     }
 
@@ -279,7 +278,7 @@ export class OwlCalendarComponent<T>
         });
     }
 
-    public ngOnInit() {}
+    public ngOnInit() { }
 
     public ngAfterContentInit(): void {
         this._currentView = this.startView;
@@ -419,16 +418,16 @@ export class OwlCalendarComponent<T>
                 date1 &&
                 date2 &&
                 this.dateTimeAdapter.getYear(date1) ===
-                    this.dateTimeAdapter.getYear(date2) &&
+                this.dateTimeAdapter.getYear(date2) &&
                 this.dateTimeAdapter.getMonth(date1) ===
-                    this.dateTimeAdapter.getMonth(date2)
+                this.dateTimeAdapter.getMonth(date2)
             );
         } else if (this._currentView === 'year') {
             return !!(
                 date1 &&
                 date2 &&
                 this.dateTimeAdapter.getYear(date1) ===
-                    this.dateTimeAdapter.getYear(date2)
+                this.dateTimeAdapter.getYear(date2)
             );
         } else {
             return false;

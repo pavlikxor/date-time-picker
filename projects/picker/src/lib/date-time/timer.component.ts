@@ -14,9 +14,9 @@ import {
     Optional,
     Output
 } from '@angular/core';
-import { OwlDateTimeIntl } from './date-time-picker-intl.service';
+import { take } from 'rxjs';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
-import { take } from 'rxjs/operators';
+import { OwlDateTimeIntl } from './date-time-picker-intl.service';
 
 @Component({
     exportAs: 'owlDateTimeTimer',
@@ -185,9 +185,9 @@ export class OwlTimerComponent<T> implements OnInit {
         private pickerIntl: OwlDateTimeIntl,
         private cdRef: ChangeDetectorRef,
         @Optional() private dateTimeAdapter: DateTimeAdapter<T>
-    ) {}
+    ) { }
 
-    public ngOnInit() {}
+    public ngOnInit() { }
 
     /**
      * Focus to the host element

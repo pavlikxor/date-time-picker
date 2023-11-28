@@ -2,6 +2,18 @@
  * date-time-picker.component
  */
 
+import { coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
+import {
+    BlockScrollStrategy,
+    Overlay,
+    OverlayConfig,
+    OverlayRef,
+    PositionStrategy,
+    ScrollStrategy
+} from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { DOCUMENT } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -18,35 +30,22 @@ import {
     Output,
     ViewContainerRef
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { ComponentPortal } from '@angular/cdk/portal';
-import {
-    BlockScrollStrategy,
-    Overlay,
-    OverlayConfig,
-    OverlayRef,
-    PositionStrategy,
-    ScrollStrategy
-} from '@angular/cdk/overlay';
-import { ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
-import { coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { OwlDateTimeContainerComponent } from './date-time-picker-container.component';
-import { OwlDateTimeInputDirective } from './date-time-picker-input.directive';
+import { Subscription, filter, merge, take } from 'rxjs';
+import { OwlDialogRef } from '../dialog/dialog-ref.class';
+import { OwlDialogService } from '../dialog/dialog.service';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import {
     OWL_DATE_TIME_FORMATS,
     OwlDateTimeFormats
 } from './adapter/date-time-format.class';
+import { OwlDateTimeContainerComponent } from './date-time-picker-container.component';
+import { OwlDateTimeInputDirective } from './date-time-picker-input.directive';
 import {
     OwlDateTime,
     PickerMode,
     PickerType,
     SelectMode
 } from './date-time.class';
-import { OwlDialogRef } from '../dialog/dialog-ref.class';
-import { OwlDialogService } from '../dialog/dialog.service';
-import { merge, Subscription } from 'rxjs';
-import { filter, take } from 'rxjs/operators';
 
 /** Injection token that determines the scroll handling while the dtPicker is open. */
 export const OWL_DTPICKER_SCROLL_STRATEGY = new InjectionToken<
@@ -312,7 +311,7 @@ export class OwlDateTimeComponent<T> extends OwlDateTime<T>
         this.defaultScrollStrategy = defaultScrollStrategy;
     }
 
-    public ngOnInit() {}
+    public ngOnInit() { }
 
     public ngOnDestroy(): void {
         this.close();

@@ -5,11 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build picker",
+    "build": "ng build",
     "test": "ng test picker",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng build picker && cp README.md dist/picker",
+    "build:lib": "ng build && cp README.md dist/picker",
     "build:styles": "mkdir -p dist/picker/assets/style && node-sass --output-style=compressed projects/picker/src/sass/picker.scss > dist/picker/assets/style/picker.min.css",
     "npm:pack": "cd dist/picker && npm pack",
     "package": "npm run build:lib && npm run build:styles && npm run npm:pack"

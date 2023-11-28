@@ -2,6 +2,8 @@
  * date-time-picker-input.directive
  */
 
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { DOWN_ARROW } from '@angular/cdk/keycodes';
 import {
     AfterContentInit,
     Directive,
@@ -26,16 +28,14 @@ import {
     ValidatorFn,
     Validators
 } from '@angular/forms';
-import { DOWN_ARROW } from '@angular/cdk/keycodes';
-import { OwlDateTimeComponent } from './date-time-picker.component';
+import { Subscription } from 'rxjs';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import {
     OWL_DATE_TIME_FORMATS,
     OwlDateTimeFormats
 } from './adapter/date-time-format.class';
-import { Subscription } from 'rxjs';
+import { OwlDateTimeComponent } from './date-time-picker.component';
 import { SelectMode } from './date-time.class';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 export const OWL_DATETIME_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -70,11 +70,11 @@ export const OWL_DATETIME_VALIDATORS: any = {
 })
 export class OwlDateTimeInputDirective<T>
     implements
-        OnInit,
-        AfterContentInit,
-        OnDestroy,
-        ControlValueAccessor,
-        Validator {
+    OnInit,
+    AfterContentInit,
+    OnDestroy,
+    ControlValueAccessor,
+    Validator {
     /**
      * The date time picker that this input is associated with.
      * */
@@ -260,9 +260,9 @@ export class OwlDateTimeInputDirective<T>
 
     private lastValueValid = true;
 
-    private onModelChange: Function = () => {};
-    private onModelTouched: Function = () => {};
-    private validatorOnChange: Function = () => {};
+    private onModelChange: Function = () => { };
+    private onModelTouched: Function = () => { };
+    private validatorOnChange: Function = () => { };
 
     /** The form control validator for whether the input parses. */
     private parseValidator: ValidatorFn = (): ValidationErrors | null => {
@@ -297,11 +297,11 @@ export class OwlDateTimeInputDirective<T>
                 this.dateTimeAdapter.compare(this.min, controlValueFrom) <= 0
                 ? null
                 : {
-                      owlDateTimeMin: {
-                          min: this.min,
-                          actual: [controlValueFrom, controlValueTo]
-                      }
-                  };
+                    owlDateTimeMin: {
+                        min: this.min,
+                        actual: [controlValueFrom, controlValueTo]
+                    }
+                };
         }
     };
 
@@ -331,11 +331,11 @@ export class OwlDateTimeInputDirective<T>
                 this.dateTimeAdapter.compare(this.max, controlValueTo) >= 0
                 ? null
                 : {
-                      owlDateTimeMax: {
-                          max: this.max,
-                          actual: [controlValueFrom, controlValueTo]
-                      }
-                  };
+                    owlDateTimeMax: {
+                        max: this.max,
+                        actual: [controlValueFrom, controlValueTo]
+                    }
+                };
         }
     };
 
@@ -413,23 +413,23 @@ export class OwlDateTimeInputDirective<T>
         return this.disabled;
     }
 
-    constructor( private elmRef: ElementRef,
+    constructor(private elmRef: ElementRef,
         private renderer: Renderer2,
         @Optional() private dateTimeAdapter: DateTimeAdapter<T>,
-        @Optional() @Inject(OWL_DATE_TIME_FORMATS) private dateTimeFormats: OwlDateTimeFormats ) {
+        @Optional() @Inject(OWL_DATE_TIME_FORMATS) private dateTimeFormats: OwlDateTimeFormats) {
         if (!this.dateTimeAdapter) {
             throw Error(
                 `OwlDateTimePicker: No provider found for DateTimePicker. You must import one of the following ` +
-                    `modules at your application root: OwlNativeDateTimeModule, OwlMomentDateTimeModule, or provide a ` +
-                    `custom implementation.`
+                `modules at your application root: OwlNativeDateTimeModule, OwlMomentDateTimeModule, or provide a ` +
+                `custom implementation.`
             );
         }
 
         if (!this.dateTimeFormats) {
             throw Error(
                 `OwlDateTimePicker: No provider found for OWL_DATE_TIME_FORMATS. You must import one of the following ` +
-                    `modules at your application root: OwlNativeDateTimeModule, OwlMomentDateTimeModule, or provide a ` +
-                    `custom implementation.`
+                `modules at your application root: OwlNativeDateTimeModule, OwlMomentDateTimeModule, or provide a ` +
+                `custom implementation.`
             );
         }
 
@@ -509,18 +509,18 @@ export class OwlDateTimeInputDirective<T>
     /**
      * Open the picker when user hold alt + DOWN_ARROW
      * */
-    public handleKeydownOnHost( event: KeyboardEvent ): void {
+    public handleKeydownOnHost(event: KeyboardEvent): void {
         if (event.altKey && event.keyCode === DOWN_ARROW) {
             this.dtPicker.open();
             event.preventDefault();
         }
     }
 
-    public handleBlurOnHost( event: Event ): void {
+    public handleBlurOnHost(event: Event): void {
         this.onModelTouched();
     }
 
-    public handleInputOnHost( event: any ): void {
+    public handleInputOnHost(event: any): void {
         let value = event.target.value;
         if (this._selectMode === 'single') {
             this.changeInputInSingleMode(value);
@@ -531,7 +531,7 @@ export class OwlDateTimeInputDirective<T>
         }
     }
 
-    public handleChangeOnHost( event: any ): void {
+    public handleChangeOnHost(event: any): void {
 
         let v;
         if (this.isInSingleMode) {
@@ -557,9 +557,9 @@ export class OwlDateTimeInputDirective<T>
                 'value',
                 this._value
                     ? this.dateTimeAdapter.format(
-                          this._value,
-                          this.dtPicker.formatString
-                      )
+                        this._value,
+                        this.dtPicker.formatString
+                    )
                     : ''
             );
         } else if (this.isInRangeMode) {
@@ -569,15 +569,15 @@ export class OwlDateTimeInputDirective<T>
 
                 const fromFormatted = from
                     ? this.dateTimeAdapter.format(
-                          from,
-                          this.dtPicker.formatString
-                      )
+                        from,
+                        this.dtPicker.formatString
+                    )
                     : '';
                 const toFormatted = to
                     ? this.dateTimeAdapter.format(
-                          to,
-                          this.dtPicker.formatString
-                      )
+                        to,
+                        this.dtPicker.formatString
+                    )
                     : '';
 
                 if (!fromFormatted && !toFormatted) {
@@ -592,10 +592,10 @@ export class OwlDateTimeInputDirective<T>
                             this.elmRef.nativeElement,
                             'value',
                             fromFormatted +
-                                ' ' +
-                                this.rangeSeparator +
-                                ' ' +
-                                toFormatted
+                            ' ' +
+                            this.rangeSeparator +
+                            ' ' +
+                            toFormatted
                         );
                     } else if (this._selectMode === 'rangeFrom') {
                         this.renderer.setProperty(

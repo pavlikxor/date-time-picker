@@ -3,6 +3,17 @@
  */
 
 import {
+    DOWN_ARROW,
+    END,
+    ENTER,
+    HOME,
+    LEFT_ARROW,
+    PAGE_DOWN,
+    PAGE_UP,
+    RIGHT_ARROW,
+    UP_ARROW
+} from '@angular/cdk/keycodes';
+import {
     AfterContentInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -16,28 +27,17 @@ import {
     Output,
     ViewChild
 } from '@angular/core';
-import {
-    CalendarCell,
-    OwlCalendarBodyComponent
-} from './calendar-body.component';
+import { Subscription } from 'rxjs';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import {
     OWL_DATE_TIME_FORMATS,
     OwlDateTimeFormats
 } from './adapter/date-time-format.class';
-import { Subscription } from 'rxjs';
-import { SelectMode } from './date-time.class';
 import {
-    DOWN_ARROW,
-    END,
-    ENTER,
-    HOME,
-    LEFT_ARROW,
-    PAGE_DOWN,
-    PAGE_UP,
-    RIGHT_ARROW,
-    UP_ARROW
-} from '@angular/cdk/keycodes';
+    CalendarCell,
+    OwlCalendarBodyComponent
+} from './calendar-body.component';
+import { SelectMode } from './date-time.class';
 
 const MONTHS_PER_YEAR = 12;
 const MONTHS_PER_ROW = 3;
@@ -527,7 +527,7 @@ export class OwlYearViewComponent<T>
             dateLeft &&
             dateRight &&
             this.dateTimeAdapter.getYear(dateLeft) ===
-                this.dateTimeAdapter.getYear(dateRight)
+            this.dateTimeAdapter.getYear(dateRight)
         );
     }
 

@@ -1,11 +1,11 @@
 /**
  * date-time.class
  */
-import { EventEmitter, Inject, Input, Optional, Directive } from '@angular/core';
 import {
     coerceBooleanProperty,
     coerceNumberProperty
 } from '@angular/cdk/coercion';
+import { Directive, EventEmitter, Inject, Input, Optional } from '@angular/core';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import {
     OWL_DATE_TIME_FORMATS,
@@ -180,7 +180,7 @@ export abstract class OwlDateTime<T> {
             (!this.dateTimeFilter || this.dateTimeFilter(dateTime)) &&
             (!this.minDateTime ||
                 this.dateTimeAdapter.compare(dateTime, this.minDateTime) >=
-                    0) &&
+                0) &&
             (!this.maxDateTime ||
                 this.dateTimeAdapter.compare(dateTime, this.maxDateTime) <= 0)
         );
@@ -199,16 +199,16 @@ export abstract class OwlDateTime<T> {
         if (!this.dateTimeAdapter) {
             throw Error(
                 `OwlDateTimePicker: No provider found for DateTimeAdapter. You must import one of the following ` +
-                    `modules at your application root: OwlNativeDateTimeModule, OwlMomentDateTimeModule, or provide a ` +
-                    `custom implementation.`
+                `modules at your application root: OwlNativeDateTimeModule, OwlMomentDateTimeModule, or provide a ` +
+                `custom implementation.`
             );
         }
 
         if (!this.dateTimeFormats) {
             throw Error(
                 `OwlDateTimePicker: No provider found for OWL_DATE_TIME_FORMATS. You must import one of the following ` +
-                    `modules at your application root: OwlNativeDateTimeModule, OwlMomentDateTimeModule, or provide a ` +
-                    `custom implementation.`
+                `modules at your application root: OwlNativeDateTimeModule, OwlMomentDateTimeModule, or provide a ` +
+                `custom implementation.`
             );
         }
 

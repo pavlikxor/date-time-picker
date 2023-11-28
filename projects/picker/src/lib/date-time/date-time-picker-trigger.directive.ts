@@ -13,8 +13,8 @@ import {
     OnInit,
     SimpleChanges
 } from '@angular/core';
+import { Subscription, merge, of as observableOf } from 'rxjs';
 import { OwlDateTimeComponent } from './date-time-picker.component';
-import { merge, of as observableOf, Subscription } from 'rxjs';
 
 @Directive({
     selector: '[owlDateTimeTrigger]',
@@ -33,7 +33,7 @@ export class OwlDateTimeTriggerDirective<T> implements OnInit, OnChanges, AfterC
         return this._disabled === undefined ? this.dtPicker.disabled : !!this._disabled;
     }
 
-    set disabled( value: boolean ) {
+    set disabled(value: boolean) {
         this._disabled = value;
     }
 
@@ -43,13 +43,13 @@ export class OwlDateTimeTriggerDirective<T> implements OnInit, OnChanges, AfterC
 
     private stateChanges = Subscription.EMPTY;
 
-    constructor( protected changeDetector: ChangeDetectorRef ) {
+    constructor(protected changeDetector: ChangeDetectorRef) {
     }
 
     public ngOnInit(): void {
     }
 
-    public ngOnChanges( changes: SimpleChanges ) {
+    public ngOnChanges(changes: SimpleChanges) {
         if (changes.datepicker) {
             this.watchStateChanges();
         }
@@ -63,7 +63,7 @@ export class OwlDateTimeTriggerDirective<T> implements OnInit, OnChanges, AfterC
         this.stateChanges.unsubscribe();
     }
 
-    public handleClickOnHost( event: Event ): void {
+    public handleClickOnHost(event: Event): void {
         if (this.dtPicker) {
             this.dtPicker.open();
             event.stopPropagation();
@@ -79,7 +79,7 @@ export class OwlDateTimeTriggerDirective<T> implements OnInit, OnChanges, AfterC
         const pickerDisabled = this.dtPicker ?
             this.dtPicker.disabledChange : observableOf();
 
-        this.stateChanges = merge(pickerDisabled, inputDisabled)
+        this.stateChanges = merge([pickerDisabled, inputDisabled])
             .subscribe(() => {
                 this.changeDetector.markForCheck();
             });

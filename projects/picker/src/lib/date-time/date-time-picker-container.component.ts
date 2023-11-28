@@ -2,6 +2,14 @@
  * date-time-picker-container.component
  */
 
+import { AnimationEvent } from '@angular/animations';
+import {
+    DOWN_ARROW,
+    LEFT_ARROW,
+    RIGHT_ARROW,
+    SPACE,
+    UP_ARROW
+} from '@angular/cdk/keycodes';
 import {
     AfterContentInit,
     AfterViewInit,
@@ -13,21 +21,13 @@ import {
     Optional,
     ViewChild
 } from '@angular/core';
-import { AnimationEvent } from '@angular/animations';
-import { OwlDateTimeIntl } from './date-time-picker-intl.service';
-import { OwlCalendarComponent } from './calendar.component';
-import { OwlTimerComponent } from './timer.component';
-import { DateTimeAdapter } from './adapter/date-time-adapter.class';
-import { OwlDateTime, PickerType } from './date-time.class';
 import { Observable, Subject } from 'rxjs';
+import { DateTimeAdapter } from './adapter/date-time-adapter.class';
+import { OwlCalendarComponent } from './calendar.component';
+import { OwlDateTimeIntl } from './date-time-picker-intl.service';
 import { owlDateTimePickerAnimations } from './date-time-picker.animations';
-import {
-    DOWN_ARROW,
-    LEFT_ARROW,
-    RIGHT_ARROW,
-    SPACE,
-    UP_ARROW
-} from '@angular/cdk/keycodes';
+import { OwlDateTime, PickerType } from './date-time.class';
+import { OwlTimerComponent } from './timer.component';
 
 @Component({
     exportAs: 'owlDateTimeContainer',
@@ -196,13 +196,13 @@ export class OwlDateTimeContainerComponent<T>
         return this.picker.pickerMode === 'inline' ? '' : 'enter';
     }
 
-    constructor( private cdRef: ChangeDetectorRef,
-                  private elmRef: ElementRef,
-                  private pickerIntl: OwlDateTimeIntl,
-                 @Optional() private dateTimeAdapter: DateTimeAdapter<T> ) {
+    constructor(private cdRef: ChangeDetectorRef,
+        private elmRef: ElementRef,
+        private pickerIntl: OwlDateTimeIntl,
+        @Optional() private dateTimeAdapter: DateTimeAdapter<T>) {
     }
 
-    public ngOnInit() {}
+    public ngOnInit() { }
 
     public ngAfterContentInit(): void {
         this.initPicker();
@@ -215,7 +215,7 @@ export class OwlDateTimeContainerComponent<T>
     public handleContainerAnimationDone(event: AnimationEvent): void {
         const toState = event.toState;
         if (toState === 'enter') {
-            this.pickerOpened$.next();
+            this.pickerOpened$.next(null);
         }
     }
 

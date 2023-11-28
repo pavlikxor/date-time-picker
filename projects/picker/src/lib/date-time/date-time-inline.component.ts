@@ -2,6 +2,7 @@
  * date-time-inline.component
  */
 
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -15,19 +16,18 @@ import {
     ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import {
-    OwlDateTime,
-    PickerMode,
-    PickerType,
-    SelectMode
-} from './date-time.class';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import {
     OWL_DATE_TIME_FORMATS,
     OwlDateTimeFormats
 } from './adapter/date-time-format.class';
 import { OwlDateTimeContainerComponent } from './date-time-picker-container.component';
+import {
+    OwlDateTime,
+    PickerMode,
+    PickerType,
+    SelectMode
+} from './date-time.class';
 
 export const OWL_DATETIME_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -253,8 +253,8 @@ export class OwlDateTimeInlineComponent<T> extends OwlDateTime<T>
         return true;
     }
 
-    private onModelChange: Function = () => {};
-    private onModelTouched: Function = () => {};
+    private onModelChange: Function = () => { };
+    private onModelTouched: Function = () => { };
 
     constructor(
         protected changeDetector: ChangeDetectorRef,

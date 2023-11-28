@@ -13,7 +13,7 @@ import {
     Output
 } from '@angular/core';
 import { SelectMode } from './date-time.class';
-import { take } from 'rxjs/operators';
+import { take } from 'rxjs';
 
 export class CalendarCell {
     constructor(

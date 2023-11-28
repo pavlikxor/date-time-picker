@@ -3,6 +3,23 @@
  */
 
 import {
+    AnimationEvent,
+    animate,
+    animateChild,
+    keyframes,
+    style,
+    transition,
+    trigger
+} from '@angular/animations';
+import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
+import {
+    BasePortalOutlet,
+    CdkPortalOutlet,
+    ComponentPortal,
+    TemplatePortal
+} from '@angular/cdk/portal';
+import { DOCUMENT } from '@angular/common';
+import {
     ChangeDetectorRef,
     Component,
     ComponentRef,
@@ -14,23 +31,6 @@ import {
     Optional,
     ViewChild
 } from '@angular/core';
-import {
-    animate,
-    animateChild,
-    AnimationEvent,
-    keyframes,
-    style,
-    transition,
-    trigger
-} from '@angular/animations';
-import { DOCUMENT } from '@angular/common';
-import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
-import {
-    BasePortalOutlet,
-    CdkPortalOutlet,
-    ComponentPortal,
-    TemplatePortal
-} from '@angular/cdk/portal';
 import { OwlDialogConfig } from './dialog-config.class';
 
 const zoomFadeIn = {
@@ -168,7 +168,7 @@ export class OwlDialogContainerComponent extends BasePortalOutlet
         super();
     }
 
-    public ngOnInit() {}
+    public ngOnInit() { }
 
     /**
      * Attach a ComponentPortal as content to this dialog container.
@@ -200,12 +200,12 @@ export class OwlDialogContainerComponent extends BasePortalOutlet
         }
     }
 
-    public onAnimationStart( event: AnimationEvent ): void {
+    public onAnimationStart(event: AnimationEvent): void {
         this.isAnimating = true;
         this.animationStateChanged.emit(event);
     }
 
-    public onAnimationDone( event: AnimationEvent ): void {
+    public onAnimationDone(event: AnimationEvent): void {
         if (event.toState === 'enter') {
             this.trapFocus();
         } else if (event.toState === 'exit') {
